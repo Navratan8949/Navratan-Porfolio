@@ -1,0 +1,630 @@
+import React, { useState } from "react";
+import {
+  LayoutDashboard,
+  User,
+  Briefcase,
+  Award,
+  FileText,
+  MessageSquare,
+  LogOut,
+  PlusCircle,
+  Edit,
+  Trash2,
+  Search,
+  ChevronDown,
+  ChevronUp,
+  Settings,
+} from "lucide-react";
+
+const AdminDashboard = () => {
+  const [activeSection, setActiveSection] = useState("dashboard");
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [expandedItem, setExpandedItem] = useState(null);
+
+  const toggleExpand = (index) => {
+    setExpandedItem(expandedItem === index ? null : index);
+  };
+
+  const menuItems = [
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      icon: <LayoutDashboard size={20} />,
+    },
+    { id: "profile", label: "Profile Info", icon: <User size={20} /> },
+    { id: "projects", label: "Projects", icon: <Briefcase size={20} /> },
+    { id: "skills", label: "Skills", icon: <Award size={20} /> },
+    { id: "experience", label: "Experience", icon: <FileText size={20} /> },
+    { id: "education", label: "Education", icon: <FileText size={20} /> },
+    {
+      id: "testimonials",
+      label: "Testimonials",
+      icon: <MessageSquare size={20} />,
+    },
+    { id: "settings", label: "Settings", icon: <Settings size={20} /> },
+  ];
+
+  const profileData = {
+    name: "John Doe",
+    role: "Senior Frontend Developer",
+    location: "San Francisco, CA",
+    avatar: "/api/placeholder/80/80",
+    email: "john@example.com",
+  };
+
+  const projectsData = [
+    {
+      id: 1,
+      title: "E-Commerce Dashboard",
+      type: "Web App",
+      image: "/api/placeholder/100/60",
+    },
+    {
+      id: 2,
+      title: "Travel Companion App",
+      type: "Mobile App",
+      image: "/api/placeholder/100/60",
+    },
+    {
+      id: 3,
+      title: "Finance Tracker",
+      type: "Web App",
+      image: "/api/placeholder/100/60",
+    },
+  ];
+
+  const experienceData = [
+    {
+      id: 1,
+      position: "Senior Frontend Developer",
+      company: "TechVision Inc.",
+      period: "2021 - Present",
+      description:
+        "Lead the frontend development team in creating responsive and accessible web applications using React and modern JavaScript.",
+    },
+    {
+      id: 2,
+      position: "UI/UX Designer",
+      company: "Creative Solutions",
+      period: "2019 - 2021",
+      description:
+        "Designed user interfaces for web and mobile applications, focusing on user experience and visual appeal.",
+    },
+  ];
+
+  const renderDashboardContent = () => {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-medium text-white">Profile Overview</h3>
+            <Edit size={18} className="text-purple-400 cursor-pointer" />
+          </div>
+          <div className="flex items-center space-x-4 mb-4">
+            <img
+              src="/api/placeholder/60/60"
+              alt="Profile"
+              className="rounded-full"
+            />
+            <div>
+              <h4 className="text-white font-medium">{profileData.name}</h4>
+              <p className="text-gray-400 text-sm">{profileData.role}</p>
+            </div>
+          </div>
+          <div className="text-gray-300 text-sm">
+            <p className="mb-2">
+              <span className="text-gray-400">Email:</span> {profileData.email}
+            </p>
+            <p className="mb-2">
+              <span className="text-gray-400">Location:</span>{" "}
+              {profileData.location}
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-medium text-white">Projects</h3>
+            <span className="text-purple-500 text-sm font-medium">
+              {projectsData.length} Total
+            </span>
+          </div>
+          <div className="space-y-4">
+            {projectsData.slice(0, 2).map((project) => (
+              <div
+                key={project.id}
+                className="flex items-center justify-between"
+              >
+                <div className="flex items-center">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-12 h-8 rounded mr-3"
+                  />
+                  <div>
+                    <h4 className="text-white text-sm font-medium">
+                      {project.title}
+                    </h4>
+                    <p className="text-gray-400 text-xs">{project.type}</p>
+                  </div>
+                </div>
+                <div className="flex space-x-2">
+                  <Edit size={16} className="text-blue-400 cursor-pointer" />
+                  <Trash2 size={16} className="text-red-400 cursor-pointer" />
+                </div>
+              </div>
+            ))}
+            <button className="flex items-center text-purple-400 text-sm mt-2">
+              View All <ChevronDown size={16} className="ml-1" />
+            </button>
+          </div>
+        </div>
+
+        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-medium text-white">Skills</h3>
+            <PlusCircle size={18} className="text-purple-400 cursor-pointer" />
+          </div>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-300 text-sm">React</span>
+              <div className="flex items-center">
+                <span className="text-purple-400 mr-2">90%</span>
+                <div className="flex space-x-1">
+                  <Edit size={16} className="text-blue-400 cursor-pointer" />
+                  <Trash2 size={16} className="text-red-400 cursor-pointer" />
+                </div>
+              </div>
+            </div>
+            <div className="w-full bg-gray-700 rounded-full h-2">
+              <div
+                className="bg-gradient-to-r from-purple-600 to-blue-400 h-2 rounded-full"
+                style={{ width: "90%" }}
+              ></div>
+            </div>
+
+            <div className="flex justify-between items-center mt-4">
+              <span className="text-gray-300 text-sm">JavaScript</span>
+              <div className="flex items-center">
+                <span className="text-purple-400 mr-2">85%</span>
+                <div className="flex space-x-1">
+                  <Edit size={16} className="text-blue-400 cursor-pointer" />
+                  <Trash2 size={16} className="text-red-400 cursor-pointer" />
+                </div>
+              </div>
+            </div>
+            <div className="w-full bg-gray-700 rounded-full h-2">
+              <div
+                className="bg-gradient-to-r from-purple-600 to-blue-400 h-2 rounded-full"
+                style={{ width: "85%" }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-medium text-white">Experience</h3>
+            <PlusCircle size={18} className="text-purple-400 cursor-pointer" />
+          </div>
+          <div className="space-y-4">
+            {experienceData.slice(0, 2).map((exp) => (
+              <div key={exp.id} className="border-l-2 border-purple-500 pl-4">
+                <div className="flex justify-between">
+                  <h4 className="text-white text-sm font-medium">
+                    {exp.position}
+                  </h4>
+                  <div className="flex space-x-1">
+                    <Edit size={16} className="text-blue-400 cursor-pointer" />
+                    <Trash2 size={16} className="text-red-400 cursor-pointer" />
+                  </div>
+                </div>
+                <p className="text-gray-400 text-xs">
+                  {exp.company} | {exp.period}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-medium text-white">Testimonials</h3>
+            <PlusCircle size={18} className="text-purple-400 cursor-pointer" />
+          </div>
+          <div className="space-y-4">
+            <div className="flex justify-between">
+              <div className="flex items-center">
+                <img
+                  src="/api/placeholder/40/40"
+                  alt="Client"
+                  className="rounded-full w-8 h-8 mr-2"
+                />
+                <div>
+                  <h4 className="text-white text-sm font-medium">David Park</h4>
+                  <p className="text-gray-400 text-xs">
+                    Startup Founder @NexGen
+                  </p>
+                </div>
+              </div>
+              <div className="flex space-x-1">
+                <Edit size={16} className="text-blue-400 cursor-pointer" />
+                <Trash2 size={16} className="text-red-400 cursor-pointer" />
+              </div>
+            </div>
+            <p className="text-gray-300 text-xs italic">
+              "From concept to execution, the entire process was seamless..."
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-medium text-white">Education</h3>
+            <PlusCircle size={18} className="text-purple-400 cursor-pointer" />
+          </div>
+          <div className="space-y-4">
+            <div className="border-l-2 border-purple-500 pl-4">
+              <div className="flex justify-between">
+                <h4 className="text-white text-sm font-medium">
+                  Master of Computer Science
+                </h4>
+                <div className="flex space-x-1">
+                  <Edit size={16} className="text-blue-400 cursor-pointer" />
+                  <Trash2 size={16} className="text-red-400 cursor-pointer" />
+                </div>
+              </div>
+              <p className="text-gray-400 text-xs">
+                Tech University | 2016 - 2017
+              </p>
+            </div>
+            <div className="border-l-2 border-purple-500 pl-4">
+              <div className="flex justify-between">
+                <h4 className="text-white text-sm font-medium">
+                  Bachelor of Science in IT
+                </h4>
+                <div className="flex space-x-1">
+                  <Edit size={16} className="text-blue-400 cursor-pointer" />
+                  <Trash2 size={16} className="text-red-400 cursor-pointer" />
+                </div>
+              </div>
+              <p className="text-gray-400 text-xs">
+                Digital Arts College | 2012 - 2016
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderProjectsContent = () => {
+    return (
+      <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold text-white">
+            Projects Management
+          </h2>
+          <button className="flex items-center bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm">
+            <PlusCircle size={16} className="mr-2" /> Add Project
+          </button>
+        </div>
+
+        <div className="flex justify-between mb-4">
+          <div className="relative">
+            <Search
+              size={18}
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+            />
+            <input
+              type="text"
+              placeholder="Search projects..."
+              className="bg-gray-700 text-gray-300 pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          <div className="flex space-x-2">
+            <select className="bg-gray-700 text-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <option>All Types</option>
+              <option>Web App</option>
+              <option>Mobile App</option>
+              <option>UI/UX</option>
+            </select>
+            <select className="bg-gray-700 text-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <option>Sort by: Newest</option>
+              <option>Sort by: Oldest</option>
+              <option>Sort by: Name</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-gray-900 rounded-lg overflow-hidden">
+            <thead className="bg-gray-700">
+              <tr>
+                <th className="py-3 px-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  Project
+                </th>
+                <th className="py-3 px-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  Type
+                </th>
+                <th className="py-3 px-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="py-3 px-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  Date Added
+                </th>
+                <th className="py-3 px-4 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-800">
+              {[
+                ...projectsData,
+                {
+                  id: 4,
+                  title: "Portfolio Website",
+                  type: "Web App",
+                  image: "/api/placeholder/100/60",
+                },
+                {
+                  id: 5,
+                  title: "Health Monitoring App",
+                  type: "Mobile App",
+                  image: "/api/placeholder/100/60",
+                },
+                {
+                  id: 6,
+                  title: "Corporate Branding",
+                  type: "UI/UX",
+                  image: "/api/placeholder/100/60",
+                },
+              ].map((project, index) => (
+                <tr key={project.id} className="hover:bg-gray-800">
+                  <td className="py-4 px-4">
+                    <div className="flex items-center">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-12 h-8 rounded mr-3"
+                      />
+                      <span className="text-gray-200">{project.title}</span>
+                    </div>
+                  </td>
+                  <td className="py-4 px-4">
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full ${
+                        project.type === "Web App"
+                          ? "bg-blue-900 text-blue-300"
+                          : project.type === "Mobile App"
+                          ? "bg-green-900 text-green-300"
+                          : "bg-purple-900 text-purple-300"
+                      }`}
+                    >
+                      {project.type}
+                    </span>
+                  </td>
+                  <td className="py-4 px-4">
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full ${
+                        index % 3 === 0
+                          ? "bg-green-900 text-green-300"
+                          : index % 3 === 1
+                          ? "bg-yellow-900 text-yellow-300"
+                          : "bg-gray-700 text-gray-300"
+                      }`}
+                    >
+                      {index % 3 === 0
+                        ? "Published"
+                        : index % 3 === 1
+                        ? "In Progress"
+                        : "Draft"}
+                    </span>
+                  </td>
+                  <td className="py-4 px-4 text-gray-300 text-sm">
+                    {new Date(
+                      2024,
+                      10 - (index % 3),
+                      15 - index * 2
+                    ).toLocaleDateString()}
+                  </td>
+                  <td className="py-4 px-4 text-right">
+                    <div className="flex justify-end space-x-2">
+                      <button className="p-1 rounded-full hover:bg-gray-700">
+                        <Edit size={16} className="text-blue-400" />
+                      </button>
+                      <button className="p-1 rounded-full hover:bg-gray-700">
+                        <Trash2 size={16} className="text-red-400" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="flex justify-between items-center mt-6">
+          <div className="text-sm text-gray-400">Showing 6 of 12 projects</div>
+          <div className="flex space-x-1">
+            <button className="px-3 py-1 bg-gray-700 text-gray-300 rounded hover:bg-gray-600">
+              Previous
+            </button>
+            <button className="px-3 py-1 bg-purple-600 text-white rounded">
+              1
+            </button>
+            <button className="px-3 py-1 bg-gray-700 text-gray-300 rounded hover:bg-gray-600">
+              2
+            </button>
+            <button className="px-3 py-1 bg-gray-700 text-gray-300 rounded hover:bg-gray-600">
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderContent = () => {
+    switch (activeSection) {
+      case "dashboard":
+        return renderDashboardContent();
+      case "projects":
+        return renderProjectsContent();
+      default:
+        return (
+          <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+            <h2 className="text-xl font-semibold text-white mb-4">
+              {activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}{" "}
+              Management
+            </h2>
+            <p className="text-gray-400">
+              This section is currently under development.
+            </p>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen bg-gradient-to-br from-gray-900 to-gray-950">
+      {/* Sidebar */}
+      <div className="w-64 bg-gray-900 border-r border-gray-800 p-4 hidden md:block">
+        <div className="mb-8">
+          <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-400">
+            Portfolio Admin
+          </h1>
+        </div>
+
+        <nav>
+          <ul className="space-y-2">
+            {menuItems.map((item) => (
+              <li key={item.id}>
+                <button
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                    activeSection === item.id
+                      ? "bg-purple-600 text-white"
+                      : "text-gray-400 hover:text-white hover:bg-gray-800"
+                  }`}
+                  onClick={() => setActiveSection(item.id)}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="absolute bottom-4 left-4 right-4">
+          <button className=" flex items-center space-x-3 px-4 py-3 rounded-lg text-red-400 hover:bg-gray-800 transition-colors">
+            <LogOut size={20} />
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Header */}
+        <header className="bg-gray-900 border-b border-gray-800 p-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center">
+              <button className="md:hidden text-gray-400 mr-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="bg-gray-800 text-gray-300 pl-10 pr-4 py-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+                <Search
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  size={18}
+                />
+              </div>
+            </div>
+
+            <div className="relative">
+              <button
+                className="flex items-center space-x-3"
+                onClick={() => setShowProfileMenu(!showProfileMenu)}
+              >
+                <div className="hidden md:block text-right">
+                  <div className="text-white">{profileData.name}</div>
+                  <div className="text-gray-400 text-sm">Administrator</div>
+                </div>
+                <img
+                  src="/api/placeholder/40/40"
+                  alt="Admin"
+                  className="w-10 h-10 rounded-full"
+                />
+              </button>
+
+              {showProfileMenu && (
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg py-2 z-10">
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-gray-300 hover:bg-gray-700"
+                  >
+                    View Profile
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-gray-300 hover:bg-gray-700"
+                  >
+                    Account Settings
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-red-400 hover:bg-gray-700"
+                  >
+                    Logout
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-bold text-white">
+              {activeSection === "dashboard"
+                ? "Admin Dashboard"
+                : activeSection.charAt(0).toUpperCase() +
+                  activeSection.slice(1) +
+                  " Management"}
+            </h1>
+
+            {activeSection !== "dashboard" && (
+              <button className="flex items-center bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm">
+                <PlusCircle size={16} className="mr-2" /> Add New
+              </button>
+            )}
+          </div>
+
+          {renderContent()}
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default AdminDashboard;
