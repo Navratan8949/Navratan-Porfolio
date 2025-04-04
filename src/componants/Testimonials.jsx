@@ -297,7 +297,7 @@ const PortfolioTestimonials = () => {
             </div>
 
             {/* Navigation Controls */}
-            <div className="flex justify-between items-center absolute  top-40 left-6 right-6 ">
+            <div className="flex justify-between items-center absolute top-1/2 left-6 right-6 md:top-1/2 transform -translate-y-1/2 ">
               <button
                 onClick={handlePrevious}
                 className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-gray-300 hover:bg-gradient-to-br hover:from-purple-500 hover:to-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-110"
@@ -313,7 +313,7 @@ const PortfolioTestimonials = () => {
               </button>
             </div>
             {/* Progress Indicators */}
-            <div className="flex items-center gap-2 absolute bottom-4 left-1/2 transform -translate-x-1/2 md:bottom-6">
+            <div className="flex items-center gap-2 absolute bottom-[6px] z-20 left-1/2 transform -translate-x-1/2 md:bottom-6">
               {testimonialsData.map((_, index) => (
                 <button
                   key={index}
