@@ -95,9 +95,9 @@ const Hero = () => {
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
-              <span className="text-white">John </span>
+              <span className="text-white">Navratan </span>
               <span className="bg-gradient-to-r from-purple-500 to-cyan-400 text-transparent bg-clip-text">
-                Doe
+                Prajapat
               </span>
             </h1>
             <div className="h-12 mb-4">
