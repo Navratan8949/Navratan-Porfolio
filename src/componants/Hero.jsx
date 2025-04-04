@@ -54,7 +54,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative h-screen flex items-center justify-center overflow-hidden pt-70 bg-transparent  md:pt-0"
+      className="relative h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0 bg-transparent"
     >
       {/* Background gradient elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(147,51,234,0.2),_transparent_50%)]"></div>
@@ -80,7 +80,7 @@ const Hero = () => {
       />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col-reverse md:flex-row items-center">
           {/* Hero Text Section */}
           <div
             className={`w-full md:w-1/2 text-center md:text-left transition-all duration-1000 transform ${
@@ -127,7 +127,7 @@ const Hero = () => {
 
           {/* Hero Image/Animation */}
           <div
-            className={`w-full md:w-1/2 mt-12 md:mt-0 transition-all duration-1000 delay-300 transform ${
+            className={`w-full md:w-1/2 md:mt-0 mt-0   transition-all duration-1000 delay-300 transform ${
               isLoaded
                 ? "translate-y-0 opacity-100"
                 : "translate-y-10 opacity-0"
