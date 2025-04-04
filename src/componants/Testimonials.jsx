@@ -312,23 +312,23 @@ const PortfolioTestimonials = () => {
                 <ChevronRight size={20} />
               </button>
             </div>
-            {/* Progress Indicators */}
-            <div className="flex items-center gap-2 absolute bottom-[6px] z-20 left-1/2 transform -translate-x-1/2 md:bottom-6">
-              {testimonialsData.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 
+          </div>
+        </div>
+        {/* Progress Indicators */}
+        <div className="flex items-center gap-2 absolute bottom-[-40px] z-20 left-1/2 transform -translate-x-1/2 md:bottom-6">
+          {testimonialsData.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`h-2 rounded-full transition-all duration-300 
                     ${
                       index === activeIndex
                         ? "bg-gradient-to-r from-purple-500 to-cyan-500 w-10"
                         : "bg-gray-700 w-2 hover:bg-gray-600"
                     }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
