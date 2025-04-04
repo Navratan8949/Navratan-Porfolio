@@ -133,7 +133,7 @@ const Hero = () => {
                 : "translate-y-10 opacity-0"
             }`}
           >
-            <div className="relative mx-auto w-64 h-64 mb-35 md:mb-0 sm:w-80 sm:h-80 md:w-96 md:h-96">
+            <div className="relative mx-auto w-64 h-64 mb-25 md:mb-0 sm:w-80 sm:h-80 md:w-96 md:h-96">
               {/* Rotating circles */}
               <div className="absolute inset-0 rounded-full border-2 border-purple-500/30 animate-spin-slow"></div>
               <div className="absolute inset-2 rounded-full border-2 border-cyan-500/30 animate-spin-slow-reverse"></div>

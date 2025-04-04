@@ -141,7 +141,9 @@ const CustomCursor = () => {
         {`
 
         body{
-          cursor: none;}
+          cursor: none;
+          }
+          
           .cursor-dot {
             width: 8px;
             height: 8px;
