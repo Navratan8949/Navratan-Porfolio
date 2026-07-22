@@ -274,7 +274,7 @@ export default function Portfolio() {
                         <button onClick={() => goto("contact")} className="btn-primary" style={{ background: "transparent", color: c.text, border: `1px solid ${c.border}`, borderRadius: 10, padding: "13px 22px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>
                             Get in touch
                         </button>
-                        <a href="/Navratan React Native Resume.pdf" download className="btn-primary" style={{ display: "flex", alignItems: "center", gap: 8, background: "transparent", color: c.muted, border: `1px dashed ${c.border}`, borderRadius: 10, padding: "13px 22px", fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
+                        <a href="/Navratan_React_Native_React.js_Developer.pdf" download className="btn-primary" style={{ display: "flex", alignItems: "center", gap: 8, background: "transparent", color: c.muted, border: `1px dashed ${c.border}`, borderRadius: 10, padding: "13px 22px", fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
                             Download resume
                         </a>
                     </div>
